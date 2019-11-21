@@ -2,9 +2,22 @@ import React from 'react';
 import {Form} from 'reactstrap';
 import '../index.css';
 import updateCase from '../page/updateCase';
+import axios from axios;
 const CardCase = (props) => {
 
     const ID = props.ID;
+
+    //set Path for delete
+    confirmDelete(){
+        var r = confirm('ยืนยันเพื่อลบ');
+        if (r==true){
+            //set ตรงนี้นะ สำหรับ delete 
+            axios.post('')
+        }else{
+        
+        }
+    }
+    /////////////////////////////////////////////////////////
 
     return (
         <div class='card border' style={{padding:'50px',border:'100px',borderRadius:'30px',marginBottom:'25px'}}>
@@ -14,7 +27,7 @@ const CardCase = (props) => {
             }}>แก้ไข</button></a>
     
             <button type="button" class="btn btn-danger" style={{width:'100px'}} onClick={()=>{
-                alert('ต้องการลบ');
+                confirmDelete()
             }}>ลบ</button>
             </div>
             <h2>เคส : {props.caseID}</h2>
