@@ -11,7 +11,14 @@ const patient = () => {
 
     //fetch data from database เริ่มแก้ตาม tutorial ที่ส่งให้
     useEffect(()=>{
-        axios.get('setpath')
+        if (searchBy == 'name'){
+            const url
+        }else if(serchBy == 'ID'){
+            const url
+        }else{
+            const url 
+        ]
+        axios.get(url)
         .then(res=>{
             setData({res})
         })
@@ -34,13 +41,20 @@ const patient = () => {
                         </div>
 
                         <input type="text" class="form-control" aria-label="Text input with dropdown button" />
-                        <button type="button" class="btn btn-primary">ยืนยัน</button>
+                        <button type="submit" class="btn btn-primary" >ยืนยัน</button>
                     </div>
 
                 </FormGroup>
             </Form>
 
-           {data.map((item)=> <CardPatient Fname={item.Fname} Lname={item.Lname} Gender={item.Gender} PatientID={item.PatientID} Tel={item.Tel} CousinTel={item.CounsinTel} Address={item.Address}/>)}
+           {data.map((item)=> <CardPatient 
+           Fname={item.Fname} 
+           Lname={item.Lname} 
+           Gender={item.Gender} 
+           PatientID={item.PatientID} 
+           Tel={item.Tel} 
+           CousinTel={item.CounsinTel} 
+           Address={item.Address}/>)}
         </div>
     );
 };
