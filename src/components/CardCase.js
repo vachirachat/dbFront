@@ -7,28 +7,23 @@ const CardCase = (props) => {
 
     const ID = props.ID;
 
-    //set Path for delete
-    let confirmDelete = (()=>{
-        //var r = confirm('ยืนยันเพื่อลบ');
-        /*if (r == true) {
-            //set ตรงนี้นะ สำหรับ delete 
-            axios.post('')
-        } else {
-
-        }*/
-    });
-    /////////////////////////////////////////////////////////
-
+    //if have more time add confirm delete
+    function deleteData(){
+        let url = //set path to delete
+        axios.delete(url,{data:payload}).then(()=>{
+            console.log(data);
+        })
+    }
     return (
         <div class='card border' style={{ padding: '50px', border: '100px', borderRadius: '30px', marginBottom: '25px' }}>
             <div className='row'>
-                <a href={'/updateCase/' + ID}><button type="button" class="btn btn-primary " role='button' style={{ width: '100px' }} onClick={() => {
-                    console.log('แก้ไข');
-                }}>แก้ไข</button></a>
-
-                <button type="button" class="btn btn-danger" style={{ width: '100px' }} onClick={() => {
-                    confirmDelete()
-                }}>ลบ</button>
+            <a href={'/updateCase/'+ID}><button type="button" class="btn btn-primary " role='button' style={{width:'100px'}} onClick={()=>{
+                console.log('แก้ไข');
+            }}>แก้ไข</button></a>
+            
+            <button type="button" class="btn btn-danger" style={{width:'100px'}} onClick={()=>{
+                deleteData();
+            }}>ลบ</button>
             </div>
             <h2>เคส : {props.caseID}</h2>
             <h2>Date : {props.Date}</h2>

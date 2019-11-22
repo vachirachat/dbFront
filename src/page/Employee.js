@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { Col, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import { Dropdown, DropdownMenu, DropdownToggle } from 'reactstrap';
 import '../index.css';
@@ -9,47 +9,34 @@ const doctor = () => {
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [searchBy, setSearchBy] = useState('');
     const [word, setWord] = useState('');
-    const data = {
-        Employee: [
-            {
-                "Fname": "Somsri",
-                "Lname": "sdalskd;",
-                "Nationality": "Thai",
-                "Gender": "M",
-                "Address": "string",
-                "Ssn": "1234567891001",
-                "Tel": "string    ",
-                "DpID": null,
-                "JobType": "Nurse",
-                "BirthDate": "1234-10-10",
-                "LicenseID": "1234567",
-                "LicenseExp": "1999-10-10",
-                "Specialist": "Phys",
-                "Head": "True",
-                "StartDate": "1990-01-10",
-                "EndDate": "1991-01-10"
-            },
-            {
-                "Fname": "Somsri",
-                "Lname": "abc",
-                "Nationality": "Thai",
-                "Gender": "M",
-                "Address": "string",
-                "Ssn": "1234567891001",
-                "Tel": "string    ",
-                "DpID": null,
-                "JobType": "Nurse",
-                "BirthDate": "1234-10-10",
-                "LicenseID": "1234567",
-                "LicenseExp": "1999-10-10",
-                "Specialist": "Phys",
-                "Head": "True",
-                "StartDate": "1990-01-10",
-                "EndDate": "1991-01-10"
-            }
-        ]
-    }
-    const Employees = data.Employee;
+    const [data,setData] = useState({Employees:[]});
+   //use for in useEffect and ยืนยัน
+   function fetchData(){
+    if (searchBy == 'name'){
+        url =  'http://localhost:5000/Employee/findbyname/:fname/:lname'
+   }else if(searchBy == 'ID'){
+        url = 'http://localhost:5000/Employee/findbyid/:id'
+   }else{
+        url = 'http://localhost:5000/Employee'
+   }
+   console.log('pat');
+    axios.get(url).then(res => {
+       
+       setData({Employees : res.data});
+       
+       })
+}
+
+
+//fetch data from database เริ่มแก้ตาม tutorial ที่ส่งให้
+useEffect(()=>{
+    fetchData()
+},[]);
+
+///////////////////////////////////////////////////
+
+
+
     const toggle = () => setDropdownOpen(prevState => !prevState);
     return (
         <div className='col-lg-10 col-sm-12 col-md-10 thaiFont'>

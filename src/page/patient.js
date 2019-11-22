@@ -56,7 +56,7 @@ const patient = () => {
                         </div>
 
                         <input type="text" class="form-control" aria-label="Text input with dropdown button" />
-                        <button type="submit" class="btn btn-primary" >ยืนยัน</button>
+                        <button type="submit" class="btn btn-primary" onClick={fetchData()}>ยืนยัน</button>
                     </div>
                 
                 </FormGroup>
