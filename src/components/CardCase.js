@@ -7,13 +7,6 @@ const CardCase = (props) => {
 
     const ID = props.ID;
 
-    //set Path for delete
-    let url;
-    //fetch data from database เริ่มแก้ตาม tutorial ที่ส่งให้
-    
-    
-    /////////////////////////////////////////////////////////
-
     return (
         <div class='card border' style={{padding:'50px',border:'100px',borderRadius:'30px',marginBottom:'25px'}}>
             <div className='row'>

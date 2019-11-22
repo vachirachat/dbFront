@@ -12,7 +12,7 @@ const casePatient = () => {
     const [searchBy, setSearchBy] = useState('');
     const toggle = () => setDropdownOpen(prevState => !prevState);
     const [word, setWord] = useState('');
-    
+    const [data,detData] = useState({realData:[]});
 
     //function call in useEffect and ยืนยัน button
     fetchData(){

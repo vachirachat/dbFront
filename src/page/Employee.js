@@ -10,22 +10,30 @@ const doctor = () => {
     const [searchBy, setSearchBy] = useState('');
     const [word, setWord] = useState('');
     const [data,setData] = useState({Employees:[]});
-    //for fetch data
-    useEffect(()=>{
-        if (searchBy == 'name'){
-             url =  'http://localhost:5000/Employee/findbyname/:fname/:lname'
-        }else if(searchBy == 'ID'){
-             url = 'http://localhost:5000/Employee/findbyid/:id'
-        }else{
-             url = 'http://localhost:5000/Employee'
-        }
-        console.log('pat');
-         axios.get(url).then(res => {
-            
-            setData({employees : res.data});
-            
-            })
-    },[]);
+   //use for in useEffect and ยืนยัน
+   fetchData(){
+    if (searchBy == 'name'){
+        url =  'http://localhost:5000/Employee/findbyname/:fname/:lname'
+   }else if(searchBy == 'ID'){
+        url = 'http://localhost:5000/Employee/findbyid/:id'
+   }else{
+        url = 'http://localhost:5000/Employee'
+   }
+   console.log('pat');
+    axios.get(url).then(res => {
+       
+       setData({Employees : res.data});
+       
+       })
+}
+
+
+//fetch data from database เริ่มแก้ตาม tutorial ที่ส่งให้
+useEffect(()=>{
+    fetchData()
+},[]);
+
+///////////////////////////////////////////////////
 
 
 
@@ -50,7 +58,7 @@ const doctor = () => {
 
                 </FormGroup>
             </Form>
-            {employees.map((item)=><CardEmployee LicenseID={item.LicenseID} Fname={item.Fname} Lname={item.Lname} BirthDate={item.BirthDate} Gender={item.Gender} Tel={item.Tel} Address={item.Address} Nationality={item.Nationality}/>)}
+            {Employees.map((item)=><CardEmployee LicenseID={item.LicenseID} Fname={item.Fname} Lname={item.Lname} BirthDate={item.BirthDate} Gender={item.Gender} Tel={item.Tel} Address={item.Address} Nationality={item.Nationality}/>)}
         </div>
     );
 };
