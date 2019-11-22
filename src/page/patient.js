@@ -9,20 +9,29 @@ const patient = () => {
     const [word, setWord] = useState('');
     const [data,setData] = useState({Pateint:[]});
 
+
+    //use for in useEffect and ยืนยัน
+    fetchData(){
+        if (searchBy == 'name'){
+            url =  'http://localhost:5000/patient/findbyname/:fname/:lname'
+       }else if(searchBy == 'ID'){
+            url = 'http://localhost:5000/patient/findbyid/:id'
+       }else{
+            url = 'http://localhost:5000/patient'
+       }
+       console.log('pat');
+        axios.get(url).then(res => {
+           
+           setData({Patient : res.data});
+           
+           })
+    }
+
+
     //fetch data from database เริ่มแก้ตาม tutorial ที่ส่งให้
     useEffect(()=>{
-        if (searchBy == 'name'){
-            const url
-        }else if(serchBy == 'ID'){
-            const url
-        }else{
-            const url 
-        ]
-        axios.get(url)
-        .then(res=>{
-            setData({res})
-        })
-    });
+        fetchData()
+    },[]);
     
     ///////////////////////////////////////////////////
     return (
@@ -41,7 +50,7 @@ const patient = () => {
                         </div>
 
                         <input type="text" class="form-control" aria-label="Text input with dropdown button" />
-                        <button type="submit" class="btn btn-primary" >ยืนยัน</button>
+                        <button type="submit" class="btn btn-primary" onClick={fetchData()}>ยืนยัน</button>
                     </div>
 
                 </FormGroup>

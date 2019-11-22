@@ -2,21 +2,16 @@ import React from 'react';
 import {Form} from 'reactstrap';
 import '../index.css';
 import updateCase from '../page/updateCase';
-import axios from axios;
+import axios from 'axios';
 const CardCase = (props) => {
 
     const ID = props.ID;
 
     //set Path for delete
-    confirmDelete(){
-        var r = confirm('ยืนยันเพื่อลบ');
-        if (r==true){
-            //set ตรงนี้นะ สำหรับ delete 
-            axios.post('')
-        }else{
-        
-        }
-    }
+    let url;
+    //fetch data from database เริ่มแก้ตาม tutorial ที่ส่งให้
+    
+    
     /////////////////////////////////////////////////////////
 
     return (

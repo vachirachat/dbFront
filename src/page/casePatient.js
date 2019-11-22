@@ -4,6 +4,7 @@ import { Col, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap
 import { Dropdown, DropdownMenu, DropdownToggle } from 'reactstrap';
 import '../index.css';
 import CardCase from '../components/CardCase';
+import axios from 'axios';
 const casePatient = () => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     // set fetch by data 
@@ -12,40 +13,28 @@ const casePatient = () => {
     const toggle = () => setDropdownOpen(prevState => !prevState);
     const [word, setWord] = useState('');
     
-    const data = {
-        patient: [{
-            "ID": "000001",
-            "Fname": "Somchai",
-            "Lname": "eiei",
-            "BirthDate": "1998-11-25",
-            "Gender": "M",
-            "Address": "Germany",
-            "Tel": "0001234567",
-            "CounsinTel": "1234567890"
-        },
-        {
-            "ID": "000002",
-            "Fname": "romchai",
-            "Lname": "edsasdiei",
-            "BirthDate": "19121298-11-25",
-            "Gender": "M",
-            "Address": "Germany",
-            "Tel": "0001234567",
-            "CounsinTel": "1234567890"
-        },],
-        case:[{
-            "Date":"2013-10-19",
-            "Description":"i feel not good",
-            "Diagnosis":"you died",
-            "PatientID":"0000001",
-            "DoctorID":"0000200",
-        }]
-    }
-    const realData = data.patient;
-    //set fetch by data
-    useEffect(() => {
 
-    });
+    //function call in useEffect and ยืนยัน button
+    fetchData(){
+        if (searchBy == 'name'){
+            url =  'http://localhost:5000/case/findbyname/:fname/:lname'
+       }else if(searchBy == 'ID'){
+            url = 'http://localhost:5000/case/findbyid/:id'
+       }else{
+            url = 'http://localhost:5000/case'
+       }
+       console.log('pat');
+        axios.get(url).then(res => {
+           setData({realData : res.data});
+           })
+    }
+    //set fetch by data
+    useEffect(()=>{
+       fetchData()
+    },[]);
+
+
+    
     return (
         <div className='col-lg-10 col-sm-12 col-md-10'>
             <div className="thaiFont">
@@ -62,10 +51,8 @@ const casePatient = () => {
 
                         <input type="text" class="form-control" onChange={(e) => {
                             setWord(e.target.value);
-                            console.log(word);
-                            console.log(data);
                         }} />
-                        <button type="button" class="btn btn-primary">ยืนยัน</button>
+                        <button type="button" class="btn btn-primary" onClick={fetchData()}>ยืนยัน</button>
                     </div>
 
                 </div>
