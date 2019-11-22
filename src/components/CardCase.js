@@ -7,15 +7,22 @@ const CardCase = (props) => {
 
     const ID = props.ID;
 
+    //if have more time add confirm delete
+    deleteData(){
+        let url = //set path to delete
+        axios.delete(url,{data:payload}).then(
+            console.log(data);
+        )
+    }
     return (
         <div class='card border' style={{padding:'50px',border:'100px',borderRadius:'30px',marginBottom:'25px'}}>
             <div className='row'>
             <a href={'/updateCase/'+ID}><button type="button" class="btn btn-primary " role='button' style={{width:'100px'}} onClick={()=>{
                 console.log('แก้ไข');
             }}>แก้ไข</button></a>
-    
+            
             <button type="button" class="btn btn-danger" style={{width:'100px'}} onClick={()=>{
-                confirmDelete()
+                deleteData();
             }}>ลบ</button>
             </div>
             <h2>เคส : {props.caseID}</h2>
