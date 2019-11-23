@@ -4,10 +4,11 @@ import '../index.css';
 import updateCase from '../page/updateCase';
 import axios from 'axios';
 const CardCase = (props) => {
-
+    console.log('props:',props);
+    
     const ID = props.PatientID;
     const caseid = props.CaseID;
-    const doctor = props.doctor.join(', ');
+    let doctor = props.doctor.join(', ');
     console.log(props.doctor);
     //if have more time add confirm delete
     function deleteData() {

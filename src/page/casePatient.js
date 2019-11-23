@@ -13,20 +13,25 @@ const casePatient = () => {
     const toggle = () => setDropdownOpen(prevState => !prevState);
     const [word, setWord] = useState('');
     const [data, setData] = useState({ realdata: [] });
+    const [patID,setPatID] = useState('')
     let url;
     //function call in useEffect and ยืนยัน button
     async function fetchData() {
-        if (searchBy == 'name') {
-            url = 'http://localhost:5000/case/findbyname/:fname/:lname'
+        console.log(word);
+        
+        if (searchBy == 'PatID') {
+            url = 'http://localhost:5000/case/findbypatid/'+word
         } else if (searchBy == 'ID') {
-            url = 'http://localhost:5000/case/findbyid/:id'
+            url = 'http://localhost:5000/case/findbyid/'+word
         } else {
             url = 'http://localhost:5000/case'
         }
         const res = await axios.get(url)
+        if(res.data == "not found") return
+        console.log(res.data);
         setData({ realdata: res.data })
         
-        console.log(res.data);
+        
         
     
     }
@@ -46,8 +51,8 @@ const casePatient = () => {
                         <div class="input-group-prepend">
                             <select class="custom-select" id="inputGroupSelect01" onChange={(e) => setSearchBy(e.target.value)}>
                                 <option selected>ต้องการค้นหาด้วย</option>
-                                <option value="name">Name</option>
-                                <option value="ID">ID</option>
+                                <option value="PatID">PatientID</option>
+                                <option value="ID">CaseID</option>
                             </select>
                         </div>
 
