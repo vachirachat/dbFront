@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
+import { Redirect } from 'react-router-dom'
 const updateCase = (props) => {
     //const [searchby, setSearchby] = useState(false)
 
@@ -49,14 +50,17 @@ const updateCase = (props) => {
 
     //for set data to server
     function sendData() {
-        let dataSend = {'Date' : date, 'Description': desc,'Diagnosis' :diag,'PatientID':patid}
+        let dataSend = { 'Date': date, 'Description': desc, 'Diagnosis': diag, 'PatientID': patid }
         let url = 'http://localhost:5000/case/update/' + caseid
         console.log(dataSend);
         axios.post(url, dataSend)
             .then((response) => {
                 console.log(response);
+                alert("success")
+                props.history.push('/case');
             }, (error) => {
                 console.log(error);
+                alert("failed")
             });
     }
 
@@ -71,7 +75,7 @@ const updateCase = (props) => {
             <div class='card border col-lg-11' style={{ padding: '50px', border: '100px', borderRadius: '30px', marginBottom: '25px' }}>
                 <h1>แก้ไขข้อมูลใน case</h1>
                 <div class='row'>
-                    <h2>เคส : </h2><input type='text' class="form-control form-control-sm col-lg-10" value={data2.Case.CaseID}style={{ marginLeft: '26px', marginTop: '5px' }} onChange={(e) => {
+                    <h2>เคส : </h2><input type='text' class="form-control form-control-sm col-lg-10" value={data2.Case.CaseID} style={{ marginLeft: '26px', marginTop: '5px' }} onChange={(e) => {
                         setCaseID(e.target.value);
                     }} />
                 </div>
@@ -109,10 +113,11 @@ const updateCase = (props) => {
                     </div>
 
                 </div>
-                <h4>อาการเบื้องต้น : </h4><textarea class="form-control col-lg-12"  aria-label="With textarea" value ={desc} onChange={(e) => { setDesc(e.target.value) }} style={{ marginTop: '5px', marginBottom: '10px' }}></textarea>
-                <h4>บรรยายข้อมูลเพิ่มเติม : </h4><textarea class="form-control col-lg-12" aria-label="With textarea" value ={diag} onChange={(e) => { setDiag(e.target.value) }} style={{ marginTop: '5px', marginBottom: '10px' }} ></textarea>
+                <h4>อาการเบื้องต้น : </h4><textarea class="form-control col-lg-12" aria-label="With textarea" value={desc} onChange={(e) => { setDesc(e.target.value) }} style={{ marginTop: '5px', marginBottom: '10px' }}></textarea>
+                <h4>บรรยายข้อมูลเพิ่มเติม : </h4><textarea class="form-control col-lg-12" aria-label="With textarea" value={diag} onChange={(e) => { setDiag(e.target.value) }} style={{ marginTop: '5px', marginBottom: '10px' }} ></textarea>
             </div>
             <button type="button" class="btn btn-primary" onClick={(e) => sendData()}>ยืนยันการเปลี่ยนแปลง</button>
+
         </div>
 
 
