@@ -4,26 +4,29 @@ import '../index.css';
 import updateCase from '../page/updateCase';
 import axios from 'axios';
 const CardCase = (props) => {
-    console.log('props:',props);
-    
+    console.log('props:', props);
+
     const ID = props.PatientID;
     const caseid = props.CaseID;
     let doctor = props.doctor.join(', ');
     console.log(props.doctor);
     //if have more time add confirm delete
     function deleteData() {
-        /*let url = //set path to delete
-        axios.delete(url,{data:payload}).then(()=>{
-            console.log(data);
-        })
-        */
+        let url = 'http://localhost:5000/case/delete/' + caseid
+        axios.delete(url).then((res) => {
+            alert("success")
+
+        }, (err) => {
+            alert("failed")
+        });
+
     }
     return (
         <div class='card border' style={{ padding: '50px', border: '100px', borderRadius: '30px', marginBottom: '25px' }}>
             <div className='row'>
                 <a href={'/updateCase/' + ID + '/' + caseid}><button type="button" class="btn btn-primary " role='button' style={{ width: '100px' }} onClick={() => {
-                    ;
-                console.log('c');
+
+                    console.log('c');
                 }}>แก้ไข</button></a>
 
                 <button type="button" class="btn btn-danger" style={{ width: '100px' }} onClick={() => {

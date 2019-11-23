@@ -56,11 +56,13 @@ const updateCase = (props) => {
         axios.post(url, dataSend)
             .then((response) => {
                 console.log(response);
+                if(response.data.name == "error"){
+                    console.log(response.data);
+                    alert("failed")
+                    return
+                }
                 alert("success")
-                props.history.push('/case');
-            }, (error) => {
-                console.log(error);
-                alert("failed")
+                props.history.push('/');
             });
     }
 

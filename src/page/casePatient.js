@@ -39,7 +39,7 @@ const casePatient = () => {
         fetchData()
     }, []);
 
-
+    
 
     return (
         <div className='col-lg-10 col-sm-12 col-md-10'>

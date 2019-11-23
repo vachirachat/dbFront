@@ -25,10 +25,10 @@ function App() {
       <Switch>
         <Route exact path='/' component={patient} />
         <Route path='/case' component={casePatient} />
-        <Route path='/doctor' component={doctor}/>
+        <Route path='/employee' component={doctor}/>
         <Route path='/updateCase/:patid/:caseid' component={updateCase}/>
-        <Route path='/updateEmployee/:id' component={updateEmployee}/>
-        <Route path='/updatePatient/:id' component={updatePatient}/>
+        <Route path='/updateEmployee/:empid' component={updateEmployee}/>
+        <Route path='/updatePatient/:patid' component={updatePatient}/>
       
       </Switch>
     </div>

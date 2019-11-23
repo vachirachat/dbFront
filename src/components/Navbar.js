@@ -12,7 +12,7 @@ const Example = (props) => {
     <div style={{marginLeft:'15%'}}>
           <a href='/' id="button2" class="btn btn-outline-primary">patient</a>
           <a href="/case" id="button2" class="btn btn-outline-primary">case</a>
-          <a href="/doctor" id="button2" class="btn btn-outline-primary">employee</a>
+          <a href="/employee" id="button2" class="btn btn-outline-primary">employee</a>
     </div>
     </div>
 

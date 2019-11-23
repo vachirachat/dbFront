@@ -13,7 +13,6 @@ const doctor = () => {
     const [word, setWord] = useState('');
     const [data, setData] = useState({ Employees: [] });
     let url;
-    let url2;
     //use for in useEffect and ยืนยัน
     async function fetchData(text) {
         if (searchBy == 'name') {
@@ -65,7 +64,7 @@ const doctor = () => {
 
 
 
-    const toggle = () => setDropdownOpen(prevState => !prevState);
+    //const toggle = () => setDropdownOpen(prevState => !prevState);
     return (
         <div className='col-lg-10 col-sm-12 col-md-10 thaiFont'>
             <Form>

@@ -93,7 +93,7 @@ const patient = () => {
                 BirthDate={items.BirthDate}
                 PatientID={items.PatientID}
                 Tel={items.Tel}
-                CousinTel={items.CounsinTel}
+                CousinTel={items.CousinTel}
                 CID={items.Case}
                 Address={items.Address} />)}
         </div>
