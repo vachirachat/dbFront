@@ -13,19 +13,33 @@ const doctor = () => {
     const [data, setData] = useState({ Employees: []});
     let url;
     //use for in useEffect and ยืนยัน
-    async function fetchData() {
+    async function fetchData(text) {
         if (searchBy == 'name') {
-            url = 'http://localhost:5000/Employee/findbyname/:fname/:lname'
+            
+            let fullName = text.split(' ')
+            if(fullName.length != 2) return;
+            console.log(fullName);
+            const fname=fullName[0]
+            const lname=fullName[1]
+            url = 'http://localhost:5000/employee/findbyname/'+fname+"/"+lname
         } else if (searchBy == 'ID') {
-            url = 'http://localhost:5000/Employee/findbyid/:id'
+            url = 'http://localhost:5000/employee/findbyid/'+text
         } else {
-            url = 'http://localhost:5000/Employee'
+            url = 'http://localhost:5000/employee'
         }
-        console.log('pat');
+        console.log(url);
+        
         const res = await axios.get(url);
+        
+        console.log(res);
+        if(res.data =="not found") {
+            setData({ Employees: [] });
+            return
+        }
         setData({ Employees: res.data });
         
-
+        
+        
 
     }
 
@@ -54,13 +68,13 @@ const doctor = () => {
                             </select>
                         </div>
 
-                        <input type="text" class="form-control" aria-label="Text input with dropdown button" />
-                        <button type="button" class="btn btn-primary">ยืนยัน</button>
+                        <input id="myText" type="text" class="form-control" aria-label="Text input with dropdown button" />
+                        <button type="button" class="btn btn-primary" onClick={() => fetchData(document.getElementById("myText").value)}>ยืนยัน</button>
                     </div>
 
                 </FormGroup>
             </Form>
-            {data.Employees.map((item) => <CardEmployee LicenseID={item.LicenseID} Fname={item.Fname} Lname={item.Lname} BirthDate={item.BirthDate} Gender={item.Gender} Tel={item.Tel} Address={item.Address} Nationality={item.Nationality} Job={item.JobType}/>)}
+            {data.Employees.map((item) => <CardEmployee EmpID={item.EmpID} Fname={item.Fname} Lname={item.Lname} BirthDate={item.BirthDate} Gender={item.Gender} Tel={item.Tel} Address={item.Address} Nationality={item.Nationality} Job={item.JobType}/>)}
         </div>
     );
 };

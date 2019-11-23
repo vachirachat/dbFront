@@ -12,7 +12,12 @@ const patient = () => {
     //use for in useEffect and ยืนยัน
     async function fetchData(text) {
         if (searchBy == 'name') {
-            url = 'http://localhost:5000/patient/findbyname/'
+            let fullName = text.split(' ')
+            if(fullName.length != 2) return;
+            console.log(fullName);
+            const fname=fullName[0]
+            const lname=fullName[1]
+            url = 'http://localhost:5000/patient/findbyname/'+fname+"/"+lname
         } else if (searchBy == 'ID') {
             url = 'http://localhost:5000/patient/findbyid/'+text
         } else {

@@ -3,7 +3,7 @@ import '../index.css';
 const cardEmployee = (props) => {
     return (
         <div class='card border' style={{padding:'50px',border:'100px',borderRadius:'30px',marginBottom:'25px',boxShadow:'0 8px 6px -6px black'}}>
-            <h2>LicenseID : {props.LicenseID}</h2>
+            <h2>EmployeeID : {props.EmpID}</h2>
             <h2>ชื่อ : {props.Fname} {props.Lname}</h2>
             <div className='row'>
                 <div className='col-sm-12 col-lg-2'>            
