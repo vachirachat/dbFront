@@ -44,7 +44,7 @@ const patient = () => {
                    
                }
                setData({ Patient: res.data })
-            })
+            });
             
             
             

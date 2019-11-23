@@ -13,7 +13,6 @@ const casePatient = () => {
     const toggle = () => setDropdownOpen(prevState => !prevState);
     const [word, setWord] = useState('');
     const [data, setData] = useState({ realdata: [] });
-    const [patID,setPatID] = useState('')
     let url;
     //function call in useEffect and ยืนยัน button
     async function fetchData() {

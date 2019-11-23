@@ -1,6 +1,9 @@
 import React from 'react';
 import '../index.css';
 const cardEmployee = (props) => {
+    let caseStr = props.Case.join(',');
+    console.log(props);
+    
     return (
         <div class='card border' style={{padding:'50px',border:'100px',borderRadius:'30px',marginBottom:'25px',boxShadow:'0 8px 6px -6px black'}}>
             <h2>EmployeeID : {props.EmpID}</h2>
@@ -18,7 +21,7 @@ const cardEmployee = (props) => {
                 </div>
 
             </div>
-            <h4>เคสที่ดูแล : {props.case}</h4>
+            <h4>เคสที่ดูแล : {caseStr}</h4>
             
         </div>
     );

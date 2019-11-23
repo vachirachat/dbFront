@@ -5,40 +5,52 @@ import { Dropdown, DropdownMenu, DropdownToggle } from 'reactstrap';
 import '../index.css';
 import CardEmployee from '../components/CardEmployee';
 import axios from 'axios'
+import { log } from 'util';
 const doctor = () => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [searchBy, setSearchBy] = useState('');
     const [word, setWord] = useState('');
-    const [data, setData] = useState({ Employees: []});
+    const [data, setData] = useState({ Employees: [] });
     let url;
+    let url2;
     //use for in useEffect and ยืนยัน
     async function fetchData(text) {
         if (searchBy == 'name') {
-            
+
             let fullName = text.split(' ')
-            if(fullName.length != 2) return;
+            if (fullName.length != 2) return;
             console.log(fullName);
-            const fname=fullName[0]
-            const lname=fullName[1]
-            url = 'http://localhost:5000/employee/findbyname/'+fname+"/"+lname
+            const fname = fullName[0]
+            const lname = fullName[1]
+            url = 'http://localhost:5000/employee/findbyname/' + fname + "/" + lname
         } else if (searchBy == 'ID') {
-            url = 'http://localhost:5000/employee/findbyid/'+text
+            url = 'http://localhost:5000/employee/findbyid/' + text
         } else {
             url = 'http://localhost:5000/employee'
         }
-        console.log(url);
-        
+
         const res = await axios.get(url);
-        
-        console.log(res);
-        if(res.data =="not found") {
+
+        if (res.data == "not found") {
             setData({ Employees: [] });
             return
         }
-        setData({ Employees: res.data });
-        
-        
+        let a =0
+        res.data.forEach(i => {
+            i.Cases = Array()
+            if (i.JobType == "Doctor" || i.JobType == "Nurse" || i.JobType == "Intern") {
+                const url2 = 'http://localhost:5000/employee/findallcase/' + i.JobType+'/'+i.EmpID
+                axios.get(url2).then((r)=>{
+                    
+                    if(r.data != "not found"){
+                        i.Cases = r.data;
+                    };
+                    setData({ Employees: res.data });
+                });
+                
+            }
+        });
         
 
     }
@@ -74,7 +86,17 @@ const doctor = () => {
 
                 </FormGroup>
             </Form>
-            {data.Employees.map((item) => <CardEmployee EmpID={item.EmpID} Fname={item.Fname} Lname={item.Lname} BirthDate={item.BirthDate} Gender={item.Gender} Tel={item.Tel} Address={item.Address} Nationality={item.Nationality} Job={item.JobType}/>)}
+            {data.Employees.map((item) => <CardEmployee 
+            EmpID={item.EmpID} 
+            Fname={item.Fname} 
+            Lname={item.Lname} 
+            BirthDate={item.BirthDate} 
+            Gender={item.Gender} 
+            Tel={item.Tel} 
+            Address={item.Address} 
+            Nationality={item.Nationality} 
+            Case={item.Cases}
+            Job={item.JobType} />)}
         </div>
     );
 };
