@@ -2,6 +2,11 @@ import React from 'react';
 import {Form} from 'reactstrap';
 import '../index.css';
 const CardPatient = (props) => {
+    let c =  props.CID.join(' ,');
+    
+    
+    
+        
     return (
         <div class='card border' style={{padding:'50px',border:'100px',borderRadius:'30px',marginBottom:'25px'}}>
             <div className='row'>
@@ -12,13 +17,13 @@ const CardPatient = (props) => {
                     <h6>ID : {props.PatientID}</h6>
                     <p>ชื่อผู้ป่วย : {props.Fname} {props.Lname}</p>
                     <p>เพศ : {props.Gender}</p>
-                    <p>วันเกิด :{props.BirthDate}</p>
+                    <p>วันเกิด : {props.BirthDate}</p>
                     <p>Tel :{props.Tel}</p>
                     <p>Cousin Tel :{props.CousinTel}</p>
-                    <p>ที่อยู่ :{props.Address}</p>
+                    <p>ที่อยู่ : {props.Address}</p>
                 </div>
                 <div className='col-sm-12 col-lg-2'>            
-                    <h3>เคส</h3>
+                    <h3>เคส : {c}</h3>
 
                 </div>
 

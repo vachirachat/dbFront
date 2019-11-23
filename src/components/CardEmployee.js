@@ -7,7 +7,7 @@ const cardEmployee = (props) => {
             <h2>ชื่อ : {props.Fname} {props.Lname}</h2>
             <div className='row'>
                 <div className='col-sm-12 col-lg-2'>            
-                <h3>ชื่อหมอ</h3>
+                <h3>JOB : {props.Job}</h3>
                 </div>
                 <div className='col-sm-12 col-lg-6'>
                     <p>วันเกิด : {props.BirthDate}</p>

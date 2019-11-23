@@ -26,7 +26,7 @@ function App() {
         <Route exact path='/' component={patient} />
         <Route path='/case' component={casePatient} />
         <Route path='/doctor' component={doctor}/>
-        <Route path='/updateCase/:id' component={updateCase}/>
+        <Route path='/updateCase/:patid/:caseid' component={updateCase}/>
         <Route path='/updateEmployee/:id' component={updateEmployee}/>
         <Route path='/updatePatient/:id' component={updatePatient}/>
       
