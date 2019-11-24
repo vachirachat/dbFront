@@ -26,9 +26,10 @@ const CardCase = (props) => {
             <div className='row'>
                 <a href={'/updateCase/' + ID + '/' + caseid}><button type="button" class="btn btn-primary " role='button' style={{ width: '100px' }} onClick={() => {
 
-                    console.log('c');
                 }}>แก้ไข</button></a>
+                <a href={'/insertDoctor/'+caseid}><button type="button" class="btn btn-success " role='button' style={{ width: '100px' }} onClick={() => {
 
+                }}>เพิ่มหมอ</button></a>
                 <button type="button" class="btn btn-danger" style={{ width: '100px' }} onClick={() => {
                     deleteData();
                 }}>ลบ</button>

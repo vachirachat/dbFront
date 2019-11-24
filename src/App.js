@@ -8,14 +8,24 @@ import updateCase from './page/updateCase';
 import updateEmployee from './page/updateEmployee';
 import updatePatient from './page/updatePatient';
 import Navbar from './components/Navbar';
+import insertPatient from  './page/insertPatient';
+import insertCase from './page/insertCase';
+import insertEmployee from './page/insertEmployee';
+import insertDoctor from './page/insertDoctor';
 import './index.css';
 function App() {
   return (
     <Router>
-    <div>
+    <div class='thaiFont'>
       <nav class="navbar" style={{backgroundColor:'#4285f4'}}>
-        <a class="navbar-brand" href="#">
-            <img src="/docs/4.3/assets/brand/bootstrap-solid.svg" width="30" height="30" alt=""/>
+        <a class="navbar-brand" href="/">
+          <div class="row">
+            
+            <h1 style={{color:'red',marginLeft:'20px'}}> + </h1>
+            <h1 style={{color:'white'}}>Hosptial Database</h1>
+            <h5 style={{color:'white',marginTop:"17px",marginLeft:'10px'}}>ข้อมูลที่ยุ่งยากให้เราช่วยจัดการ</h5>
+            
+            </div>
     </a>
     </nav>
     
@@ -27,8 +37,12 @@ function App() {
         <Route path='/case' component={casePatient} />
         <Route path='/employee' component={doctor}/>
         <Route path='/updateCase/:patid/:caseid' component={updateCase}/>
-        <Route path='/updateEmployee/:empid' component={updateEmployee}/>
-        <Route path='/updatePatient/:patid' component={updatePatient}/>
+        <Route path='/updateEmployee/:id' component={updateEmployee}/>
+        <Route path='/updatePatient/:id' component={updatePatient}/>
+        <Route path='/insertPatient' component={insertPatient} />
+        <Route path='/insertCase' component={insertCase} />
+        <Route path='/insertEmployee' component={insertEmployee} />
+        <Route path='/insertDoctor/:caseid' component={insertDoctor} />
       
       </Switch>
     </div>

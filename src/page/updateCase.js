@@ -24,7 +24,6 @@ const updateCase = (props) => {
     const [diag, setDiag] = useState('');
     let i;
     const [data, setData] = useState({ Patient: {} });
-    const [data2, setData2] = useState({ Case: [] });
 
     //for fetch first Data
     function fetchData() {
@@ -38,7 +37,7 @@ const updateCase = (props) => {
         setFname(data.Patient.Fname)
         axios.get(url2).then(res => {
             const r = res.data[0]
-            setData2({ Case: r });
+            setCaseID(r.CaseID);
             setDiag(r.Diagnosis);
             setDesc(r.Description);
             setDate(r.Date);
@@ -62,7 +61,7 @@ const updateCase = (props) => {
                     return
                 }
                 alert("success")
-                props.history.push('/');
+                props.history.push('/case');
             });
     }
 
@@ -77,9 +76,7 @@ const updateCase = (props) => {
             <div class='card border col-lg-11' style={{ padding: '50px', border: '100px', borderRadius: '30px', marginBottom: '25px' }}>
                 <h1>แก้ไขข้อมูลใน case</h1>
                 <div class='row'>
-                    <h2>เคส : </h2><input type='text' class="form-control form-control-sm col-lg-10" value={data2.Case.CaseID} style={{ marginLeft: '26px', marginTop: '5px' }} onChange={(e) => {
-                        setCaseID(e.target.value);
-                    }} />
+                    <h2>เคส : </h2><input type='text' class="form-control form-control-sm col-lg-10" value={caseID} style={{ marginLeft: '26px', marginTop: '5px' }} />
                 </div>
                 <div class='row'>
                     <h2>Date : </h2><input type="text" class="form-control form-control-sm col-lg-10" value={date} style={{ marginLeft: '10px', marginTop: '5px' }} onChange={(e) => { setDate(e.target.value) }} />
@@ -91,26 +88,26 @@ const updateCase = (props) => {
 
                     <div className='col-sm-12 col-lg-10'>
                         <div class='row' style={{ marginLeft: '5px' }}>
-                            <h6 style={{ marginTop: '10px' }}>ID : </h6><input type="text" class="form-control form-control-sm col-lg-9" style={{ marginLeft: '72px' }} value={data.Patient.PatientID} onChange={(e) => { setID(e.target.value) }} />
+                            <h6 style={{ marginTop: '10px' }}>ID : </h6><input type="text" class="form-control form-control-sm col-lg-9" style={{ marginLeft: '72px' }} value={data.Patient.PatientID}  />
                         </div>
                         <div class='row' style={{ marginLeft: '5px' }}>
-                            <h6 style={{ marginTop: '10px' }}>ชื่อผู้ป่วย : </h6><input type="text" class="form-control form-control-sm col-lg-9" style={{ marginLeft: '30px' }} value={data.Patient.Fname} onChange={(e) => { }} />
+                            <h6 style={{ marginTop: '10px' }}>ชื่อผู้ป่วย : </h6><input type="text" class="form-control form-control-sm col-lg-9" style={{ marginLeft: '30px' }} value={data.Patient.Fname} />
                         </div>
                         <div class='row' style={{ marginLeft: '5px' }}>
-                            <h6 style={{ marginTop: '10px' }}>นามสกุล : </h6><input type="text" class="form-control form-control-sm col-lg-9" style={{ marginLeft: '30px' }} value={data.Patient.Lname} onChange={(e) => { setLname(e.target.value) }} />
+                            <h6 style={{ marginTop: '10px' }}>นามสกุล : </h6><input type="text" class="form-control form-control-sm col-lg-9" style={{ marginLeft: '30px' }} value={data.Patient.Lname}  />
                         </div>
                         <div class='row' style={{ marginLeft: '5px' }}>
-                            <h6 style={{ marginTop: '10px' }}>วันเกิด : </h6><input type="text" class="form-control form-control-sm col-lg-9" style={{ marginLeft: '43px' }} value={data.Patient.BirthDate} onChange={(e) => { setBirthDate(e.target.value) }} />
+                            <h6 style={{ marginTop: '10px' }}>วันเกิด : </h6><input type="text" class="form-control form-control-sm col-lg-9" style={{ marginLeft: '43px' }} value={data.Patient.BirthDate}  />
                         </div>
 
                         <div class='row' style={{ marginLeft: '5px' }}>
-                            <h6 style={{ marginTop: '10px' }}>Tel : </h6><input type="text" class="form-control form-control-sm col-lg-9" style={{ marginLeft: '65px' }} value={data.Patient.Tel} onChange={(e) => { setTel(e.target.value) }} />
+                            <h6 style={{ marginTop: '10px' }}>Tel : </h6><input type="text" class="form-control form-control-sm col-lg-9" style={{ marginLeft: '65px' }} value={data.Patient.Tel} />
                         </div>
                         <div class='row' style={{ marginLeft: '5px' }}>
-                            <h6 style={{ marginTop: '10px' }}>Cousin Tel : </h6><input type="text" class="form-control form-control-sm col-lg-9" style={{ marginLeft: '10px' }} value={data.Patient.CousinTel} onChange={(e) => { setConTel(e.target.value) }} />
+                            <h6 style={{ marginTop: '10px' }}>Cousin Tel : </h6><input type="text" class="form-control form-control-sm col-lg-9" style={{ marginLeft: '10px' }} value={data.Patient.CousinTel}  />
                         </div>
                         <div class='row' style={{ marginLeft: '5px' }}>
-                            <h6 style={{ marginTop: '10px' }}>ที่อยู่ : </h6><input type="text" class="form-control form-control-sm col-lg-9" style={{ marginLeft: '57px' }} value={data.Patient.Address} onChange={(e) => { setAddress(e.target.value) }} />
+                            <h6 style={{ marginTop: '10px' }}>ที่อยู่ : </h6><input type="text" class="form-control form-control-sm col-lg-9" style={{ marginLeft: '57px' }} value={data.Patient.Address}  />
                         </div>
                     </div>
 

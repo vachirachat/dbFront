@@ -72,7 +72,7 @@ const updateEmployee = (props) => {
                     return
                 }
                 alert("success")
-                props.history.push('/');
+                props.history.push('/employee');
             });
     }
 
