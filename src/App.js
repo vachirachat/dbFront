@@ -12,6 +12,8 @@ import insertPatient from  './page/insertPatient';
 import insertCase from './page/insertCase';
 import insertEmployee from './page/insertEmployee';
 import insertDoctor from './page/insertDoctor';
+import insertNurse from './page/insertNurse';
+import insertIntern from './page/insertIntern';
 import './index.css';
 function App() {
   return (
@@ -37,12 +39,15 @@ function App() {
         <Route path='/case' component={casePatient} />
         <Route path='/employee' component={doctor}/>
         <Route path='/updateCase/:patid/:caseid' component={updateCase}/>
-        <Route path='/updateEmployee/:id' component={updateEmployee}/>
-        <Route path='/updatePatient/:id' component={updatePatient}/>
+        <Route path='/updateEmployee/:empid' component={updateEmployee}/>
+        <Route path='/updatePatient/:patid' component={updatePatient}/>
         <Route path='/insertPatient' component={insertPatient} />
         <Route path='/insertCase' component={insertCase} />
         <Route path='/insertEmployee' component={insertEmployee} />
         <Route path='/insertDoctor/:caseid' component={insertDoctor} />
+        <Route path='/insertNurse/:caseid' component={insertNurse} />
+        <Route path='/insertIntern/:caseid' component={insertIntern} />
+
       
       </Switch>
     </div>

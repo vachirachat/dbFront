@@ -43,7 +43,7 @@ const updateEmployee = (props) => {
             setLname(r.Lname);
             setNation(r.Nationality);
             setGender(r.Gender);
-            setBirthdate(r.BirthDate);
+            setBirthdate(new Date(r.BirthDate).toISOString().replace('T17:00:00.000Z', ''));            
             setAddr(r.Address);
             setSsn(r.Ssn);
             setTel(r.Tel);
@@ -66,7 +66,7 @@ const updateEmployee = (props) => {
         axios.post(url, dataSend)
             .then((response) => {
                 console.log(response);
-                if(response.data.name == "error"){
+                if (response.data.name == "error") {
                     console.log(response.data);
                     alert("failed")
                     return
@@ -104,7 +104,7 @@ const updateEmployee = (props) => {
                         <h6 style={{ marginTop: '10px' }}>สัญชาติ : </h6><input type="text" class="form-control form-control-sm col-lg-6" value={nation} onChange={(e) => { setNation(e.target.value) }} style={{ marginLeft: '30px' }} />
                     </div>
                     <div class='row' style={{ marginLeft: '5px' }}>
-                        <h6 style={{ marginTop: '10px' }}>วันเกิด : </h6><input type="text" class="form-control form-control-sm col-lg-6" value={birthdate} onChange={(e) => { setBirthdate(e.target.value) }} style={{ marginLeft: '43px' }} />
+                        <h6 style={{ marginTop: '10px' }}>วันเกิด : </h6><input type="date" class="form-control form-control-sm col-lg-6" value={birthdate} onChange={(e) => { setBirthdate(e.target.value) }} style={{ marginLeft: '43px' }} />
                     </div>
 
                     <div class='row' style={{ marginLeft: '5px' }}>

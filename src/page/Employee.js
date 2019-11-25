@@ -18,7 +18,7 @@ const doctor = () => {
         if (searchBy == 'name') {
 
             let fullName = text.split(' ')
-            if (fullName.length != 2) return;
+            if (fullName.length != 2) return alert('format is \"fname lname\"');
             console.log(fullName);
             const fname = fullName[0]
             const lname = fullName[1]
@@ -38,7 +38,7 @@ const doctor = () => {
         let a =0
         res.data.forEach(i => {
             i.Cases = Array()
-            if (i.JobType == "Doctor" || i.JobType == "Nurse" || i.JobType == "Intern") {
+            if (i.JobType.toLocaleLowerCase() == "doctor" || i.JobType == "nurse" || i.JobType == "intern") {
                 const url2 = 'http://localhost:5000/employee/findallcase/' + i.JobType+'/'+i.EmpID
                 axios.get(url2).then((r)=>{
                     

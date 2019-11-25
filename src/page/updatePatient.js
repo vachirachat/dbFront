@@ -38,7 +38,9 @@ const updatePatient = props => {
             setFname(r.Fname);
             setLname(r.Lname);
             setGender(r.Gender);
-            setBirthdate(r.BirthDate);
+            setBirthdate(new Date(r.BirthDate).toISOString().replace('T17:00:00.000Z', ''));
+            console.log(new Date(r.BirthDate).toDateString().replace('.000Z', ''));
+            
             setAddr(r.Address);
             setCouTel(r.CousinTel);
             setTel(r.Tel);
@@ -91,7 +93,7 @@ const updatePatient = props => {
                         <h6 style={{ marginTop: '10px' }}>เพศ : </h6><input type="text" class="form-control form-control-sm col-lg-6" value={gender} onChange={(e) => { setGender(e.target.value) }} style={{ marginLeft: '30px' }} />
                     </div>
                     <div class='row' style={{ marginLeft: '5px' }}>
-                        <h6 style={{ marginTop: '10px' }}>วันเกิด : </h6><input type="text" class="form-control form-control-sm col-lg-6" value={birthdate} onChange={(e) => { setBirthdate(e.target.value) }} style={{ marginLeft: '43px' }} />
+                        <h6 style={{ marginTop: '10px' }}>วันเกิด : </h6><input type="date" class="form-control form-control-sm col-lg-6" value={birthdate} onChange={(e) => { setBirthdate(e.target.value) }} style={{ marginLeft: '43px' }} />
                     </div>
 
                     <div class='row' style={{ marginLeft: '5px' }}>

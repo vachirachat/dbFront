@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
-import { Redirect } from 'react-router-dom'
 const updateCase = (props) => {
     //const [searchby, setSearchby] = useState(false)
 
@@ -13,18 +12,10 @@ const updateCase = (props) => {
     //for set all data element
     const [caseID, setCaseID] = useState('');
     const [date, setDate] = useState('');
-    const [ID, setID] = useState('');
-    const [Fname, setFname] = useState('');
-    const [Lname, setLname] = useState('');
-    const [birthDate, setBirthDate] = useState('');
-    const [tel, setTel] = useState('');
-    const [conTel, setConTel] = useState('');
-    const [address, setAddress] = useState('');
     const [desc, setDesc] = useState('');
     const [diag, setDiag] = useState('');
     let i;
     const [data, setData] = useState({ Patient: {} });
-
     //for fetch first Data
     function fetchData() {
         let url = 'http://localhost:5000/patient/findbyid/' + patid
@@ -34,16 +25,15 @@ const updateCase = (props) => {
             const r = res.data[0]
             setData({ Patient: r });
         })
-        setFname(data.Patient.Fname)
         axios.get(url2).then(res => {
             const r = res.data[0]
             setCaseID(r.CaseID);
             setDiag(r.Diagnosis);
             setDesc(r.Description);
-            setDate(r.Date);
-            console.log(r);
-
+            setDate(new Date(r.Date).toISOString().replace('.000Z',''));
+            
         })
+        
 
     }
 
@@ -79,7 +69,7 @@ const updateCase = (props) => {
                     <h2>เคส : </h2><input type='text' class="form-control form-control-sm col-lg-10" value={caseID} style={{ marginLeft: '26px', marginTop: '5px' }} />
                 </div>
                 <div class='row'>
-                    <h2>Date : </h2><input type="text" class="form-control form-control-sm col-lg-10" value={date} style={{ marginLeft: '10px', marginTop: '5px' }} onChange={(e) => { setDate(e.target.value) }} />
+                    <h2>Date : </h2><input type="datetime-local" class="form-control form-control-sm col-lg-10" value={date}  style={{ marginLeft: '10px', marginTop: '5px' }} onChange={(e) => { setDate(e.target.value) }} />
                 </div>
                 <div className='row'>
                     <div className='col-sm-12 col-lg-2'>

@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import React,{useState,useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const insertPatient = (props) => {
@@ -11,14 +11,14 @@ const insertPatient = (props) => {
     const [couTel, setCouTel] = useState('');
     const [address, setAddress] = useState('');
 
-    function sendData(){
-        let dataSend = { 'Fname': Fname, 'Lname': Lname, 'BirthDate': birthDate,'Gender':gender,'Tel':tel,'CousinTel':couTel,'Address':address }
+    function sendData() {
+        let dataSend = { 'Fname': Fname, 'Lname': Lname, 'BirthDate': birthDate, 'Gender': gender, 'Tel': tel, 'CousinTel': couTel, 'Address': address }
         let url = 'http://localhost:5000/Patient/insert'
         console.log(dataSend);
         axios.post(url, dataSend)
             .then((response) => {
                 console.log(response);
-                if(response.data.name == "error"){
+                if (response.data.name == "error") {
                     console.log(response.data);
                     alert("failed")
                     return
@@ -28,50 +28,50 @@ const insertPatient = (props) => {
             });
 
     }
-     //for set all data element
-     
- 
+    //for set all data element
+
+
     return (
-        <div class='card border col-lg-11' style={{padding:'50px',border:'100px',borderRadius:'30px',marginBottom:'25px'}}>
+        <div class='card border col-lg-11' style={{ padding: '50px', border: '100px', borderRadius: '30px', marginBottom: '25px' }}>
             <h1>สร้างข้อมูลใหม่โดย Patient </h1>
             <div className='row' >
-                <div className='col-sm-12 col-lg-2'>            
-                <h3>หน้าคน</h3>
+                <div className='col-sm-12 col-lg-2'>
+                    <h3>หน้าคน</h3>
                 </div>
                 <div className='col-sm-12 col-lg-6'>
-                    <div class='row' style={{marginLeft:'5px'}}>           
-                    <p>ชื่อผู้ป่วย : </p><input type="text" class="form-control form-control-sm col-lg-10" style={{ marginLeft: '36px' }} onChange={(e) => { setFname(e.target.value) }} />
-                    
-                    </div>
-                    <div class='row' style={{marginLeft:'5px'}}>           
-                    <p>นามสกุล : </p><input type="text" class="form-control form-control-sm col-lg-10" style={{ marginLeft: '36px' }} onChange={(e) => { setLname(e.target.value) }} />
-                     
-                    </div>
-                    <div class='row' style={{marginLeft:'5px'}}>           
-                    <p>เพศ : </p><input type="text" class="form-control form-control-sm col-lg-10" style={{ marginLeft: '60px' }} onChange={(e) => { setGender(e.target.value) }} />
-                    </div>
-                    <div class='row' style={{marginLeft:'5px'}}>           
-                    <p>วันเกิด : </p><input type="text" class="form-control form-control-sm col-lg-10" style={{ marginLeft: '47px' }} onChange={(e) => { setBirthDate(e.target.value) }} />
-                    
-                    </div>
-                    <div class='row' style={{marginLeft:'5px'}}>           
-                    <p>เบอร์โทรผู้ป่วย : </p><input type="text" class="form-control form-control-sm col-lg-10" style={{ marginLeft: '67px' }} onChange={(e) => { setTel(e.target.value) }} />
-                    
-                    </div>
-                    <div class='row' style={{marginLeft:'5px'}}>           
-                    <p>เบอร์โทรญาติ : </p><input type="text" class="form-control form-control-sm col-lg-10" style={{ marginLeft: '17px' }} onChange={(e) => { setCouTel(e.target.value) }} />
-                    
-                    </div>
-                    <div class='row' style={{marginLeft:'5px'}}>           
-                    <p>ที่อยู่ : </p><input type="text" class="form-control form-control-sm col-lg-10" style={{ marginLeft: '60px' }} onChange={(e) => { setAddress(e.target.value) }} />
-                    
-                    </div>
-                    <button type="button" class="btn btn-success" style={{marginTop:'10px'}} onClick={(e) => sendData()}>ยืนยันการเปลี่ยนแปลง</button>
-                </div>
-                      
-                    
+                    <div class='row' style={{ marginLeft: '5px' }}>
+                        <p>ชื่อผู้ป่วย : </p><input type="text" class="form-control form-control-sm col-lg-10" style={{ marginLeft: '36px' }} onChange={(e) => { setFname(e.target.value) }} />
 
-                
+                    </div>
+                    <div class='row' style={{ marginLeft: '5px' }}>
+                        <p>นามสกุล : </p><input type="text" class="form-control form-control-sm col-lg-10" style={{ marginLeft: '36px' }} onChange={(e) => { setLname(e.target.value) }} />
+
+                    </div>
+                    <div class='row' style={{ marginLeft: '5px', marginTop: '10px' }}  ><p>เพศ : </p><label class="radio-inline" /><input type="radio" name="gender" value='M' style={{ marginLeft: '60px' }} onChange={(e) => { setGender(e.target.value) }} /><p style={{ marginLeft: '10px' }}>Male</p>
+                        <label class="radio-inline" /><input type="radio" name="gender" value='F' style={{ marginLeft: '60px' }} onChange={(e) => { setGender(e.target.value) }} /><p style={{ marginLeft: '10px' }}>Female</p>
+                    </div>
+                    <div class='row' style={{ marginLeft: '5px' }}>
+                        <p>วันเกิด : </p><input type="date" class="form-control form-control-sm col-lg-10" style={{ marginLeft: '30px' }} onChange={(e) => { setBirthDate(e.target.value) }} />
+
+                    </div>
+                    <div class='row' style={{ marginLeft: '5px' }}>
+                        <p>เบอร์โทรผู้ป่วย : </p><input type="text" class="form-control form-control-sm col-lg-10" style={{ marginLeft: '67px' }} onChange={(e) => { setTel(e.target.value) }} />
+
+                    </div>
+                    <div class='row' style={{ marginLeft: '5px' }}>
+                        <p>เบอร์โทรญาติ : </p><input type="text" class="form-control form-control-sm col-lg-10" style={{ marginLeft: '17px' }} onChange={(e) => { setCouTel(e.target.value) }} />
+
+                    </div>
+                    <div class='row' style={{ marginLeft: '5px' }}>
+                        <h6 style={{ marginTop: '10px' }}>ที่อยู่ : </h6><textarea class="form-control col-lg-12" aria-label="With textarea" onChange={(e) => { setAddress(e.target.value) }}
+                            style={{ marginTop: '5px', marginBottom: '10px' }}></textarea>
+                    </div>
+                    <button type="button" class="btn btn-success" style={{ marginTop: '10px' }} onClick={(e) => sendData()}>ยืนยันการเปลี่ยนแปลง</button>
+                </div>
+
+
+
+
 
             </div>
         </div>

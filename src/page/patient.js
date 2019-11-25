@@ -13,7 +13,7 @@ const patient = () => {
     async function fetchData(text) {
         if (searchBy == 'name') {
             let fullName = text.split(' ')
-            if(fullName.length != 2) return;
+            if (fullName.length != 2) return alert('format is \"fname lname\"');
             console.log(fullName);
             const fname=fullName[0]
             const lname=fullName[1]

@@ -18,7 +18,7 @@ const insertCase = (props) => {
         axios.post(url, dataSend)
             .then((response) => {
                 console.log(response);
-                if(response.data.name == "error"){
+                if (response.data.name == "error") {
                     console.log(response.data);
                     alert("failed")
                     return
@@ -27,12 +27,13 @@ const insertCase = (props) => {
                 props.history.push('/case');
             });
     }
+    
     return (
         <div>
             <div class='card border col-lg-11' style={{ padding: '50px', border: '100px', borderRadius: '30px', marginBottom: '25px' }}>
                 <h1>สร้างข้อมูลใหม่ใน case</h1>
                 <div class='row'>
-                    <h2>Date : </h2><input type="text" class="form-control form-control-sm col-lg-10" style={{ marginLeft: '10px', marginTop: '5px' }} onChange={(e) => { setDate(e.target.value) }} />
+                    <h2>Date : </h2><input type="datetime-local" class="form-control form-control-sm col-lg-10"  style={{ marginLeft: '10px', marginTop: '5px' }} onChange={(e) => { setDate(e.target.value) }} />
                 </div>
                 <div className='row'>
                     <div className='col-sm-12 col-lg-10'>
@@ -49,8 +50,9 @@ const insertCase = (props) => {
                 <h4>บรรยายข้อมูลเพิ่มเติม : </h4><textarea class="form-control col-lg-12" aria-label="With textarea" onChange={(e) => { setDiag(e.target.value) }} style={{ marginTop: '5px', marginBottom: '10px' }} ></textarea>
 
                 <button type="button" class="btn btn-success" onClick={(e) => sendData()}>สร้างข้อมูลใหม่</button>
+                
             </div>
-
+        
         </div>
 
     );

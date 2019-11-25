@@ -1,20 +1,26 @@
 import React from 'react';
 import { Form } from 'reactstrap';
 import '../index.css';
-import {axios} from 'axios'
+import axios from 'axios'
 
 const CardPatient = (props) => {
     let c = props.CID.join(' ,');
     let id = props.PatientID
+    let date = new Date(props.BirthDate);
+
     function deleteData() {
-        let url = 'http://localhost:5000/patient/delete/' + id
-        axios.delete(url).then((res) => {
-            alert("success")
+        let confirm = window.confirm('Do you want to delete?')
+        if (confirm) {
+            let url = 'http://localhost:5000/patient/delete/' + id
+            console.log(url);
 
-        }, (err) => {
-            alert("failed")
-        });
-
+            axios.delete(url).then((res) => {
+                alert("success")
+                window.location.reload();
+            }, (err) => {
+                alert("failed")
+            });
+        }
     }
 
 
@@ -22,12 +28,12 @@ const CardPatient = (props) => {
         <div class='card border' style={{ padding: '50px', border: '100px', borderRadius: '30px', marginBottom: '25px' }}>
             <div className='row'>
                 <a href={'/updatePatient/' + id}><button type="button" class="btn btn-primary " role='button' style={{ width: '100px' }} onClick={() => {
-                    deleteData();
+
                     console.log('c');
                 }}>แก้ไข</button></a>
 
                 <button type="button" class="btn btn-danger" style={{ width: '100px' }} onClick={() => {
-                    'deleteData();'
+                    deleteData();
                 }}>ลบ</button>
             </div>
             <div className='row'>
@@ -38,7 +44,7 @@ const CardPatient = (props) => {
                     <h6>ID : {props.PatientID}</h6>
                     <p>ชื่อผู้ป่วย : {props.Fname} {props.Lname}</p>
                     <p>เพศ : {props.Gender}</p>
-                    <p>วันเกิด : {props.BirthDate}</p>
+                    <p>วันเกิด : {date.toDateString()}</p>
                     <p>Tel :{props.Tel}</p>
                     <p>Cousin Tel :{props.CousinTel}</p>
                     <p>ที่อยู่ : {props.Address}</p>

@@ -25,9 +25,11 @@ const insertEmployee = (props) => {
             "BirthDate": "1234-10-09T17:17:56.000Z"
         }*/
     function sendData() {
-        let dataSend = { 'Lname': Lname, 'Fname': Fname, 'JobType': job, 'BirthDate': birthDate, 
-        'Gender': gender, 'Tel': tel, 'Nationality': nationality, 'Address': address,
-         'Ssn' : ssn}
+        let dataSend = {
+            'Lname': Lname, 'Fname': Fname, 'JobType': job, 'BirthDate': birthDate,
+            'Gender': gender, 'Tel': tel, 'Nationality': nationality, 'Address': address,
+            'Ssn': ssn
+        }
         let url = 'http://localhost:5000/Employee/insert/'
         console.log(dataSend);
         axios.post(url, dataSend)
@@ -57,14 +59,14 @@ const insertEmployee = (props) => {
                     <p>JOB : </p><input type="text" class="form-control form-control-sm col-lg-9" style={{ marginLeft: '83px' }} onChange={(e) => { setJob(e.target.value) }} />
                 </div>
 
-                <div className='row' style={{ marginTop: '10px' }}>
-                    <p>วันเกิด : </p><input type="text" class="form-control form-control-sm col-lg-9" style={{ marginLeft: '70px' }} onChange={(e) => { setBirthDate(e.target.value) }} />
+                <div class='row' style={{ marginLeft: '5px' }}>
+                    <p>วันเกิด : </p><input type="date" class="form-control form-control-sm col-lg-10" style={{ marginLeft: '30px' }} onChange={(e) => { setBirthDate(e.target.value) }} />
+                </div>
+                <div class='row' style={{ marginLeft: '5px', marginTop: '10px' }}  ><p>เพศ : </p><label class="radio-inline" /><input type="radio" name="gender" value='M' style={{ marginLeft: '60px' }} onChange={(e) => { setGender(e.target.value) }} /><p style={{ marginLeft: '10px' }}>Male</p>
+                    <label class="radio-inline" /><input type="radio" name="gender" value='F' style={{ marginLeft: '60px' }} onChange={(e) => { setGender(e.target.value) }} /><p style={{ marginLeft: '10px' }}>Female</p>
                 </div>
                 <div className='row' style={{ marginTop: '10px' }}>
-                    <p>เพศ : </p><input type="text" class="form-control form-control-sm col-lg-9" style={{ marginLeft: '85px' }} onChange={(e) => { setGender(e.target.value) }} />
-                </div>
-                <div className='row' style={{ marginTop: '10px' }}>
-                    <p>เลขบัตรประชาชน : </p><input type="text" class="form-control form-control-sm col-lg-9" style={{ marginLeft: '85px' }} onChange={(e) => { setSsn(e.target.value) }} />
+                    <p>เลขบัตรประชาชน : </p><input type="text" class="form-control form-control-sm col-lg-9" maxlength='13' style={{ marginLeft: '85px' }} onChange={(e) => { setSsn(e.target.value) }} />
                 </div>
                 <div className='row' style={{ marginTop: '10px' }}>
                     <p>Tel : </p><input type="text" class="form-control form-control-sm col-lg-9" style={{ marginLeft: '89px' }} onChange={(e) => { setTel(e.target.value) }} />
@@ -73,8 +75,8 @@ const insertEmployee = (props) => {
                     <p>เชื้อชาติ : </p><input type="text" class="form-control form-control-sm col-lg-9" style={{ marginLeft: '63px' }} onChange={(e) => { setNationality(e.target.value) }} />
                 </div>
                 <div className='row' style={{ marginTop: '10px' }}>
-                    <p>ที่อยู่ : </p><input type="text" class="form-control form-control-sm col-lg-9" style={{ marginLeft: '80px' }} onChange={(e) => { setAddress(e.target.value) }} />
-                </div>
+                    <h6 style={{ marginTop: '10px' }}>ที่อยู่ : </h6><textarea class="form-control col-lg-12" aria-label="With textarea" onChange={(e) => { setAddress(e.target.value) }}
+                        style={{ marginTop: '5px', marginBottom: '10px' }}></textarea>                </div>
             </div>
             <button type="button" class="btn btn-success" onClick={(e) => sendData()} style={{ marginTop: '20px' }}>สร้างข้อมูลใหม่</button>
         </div>

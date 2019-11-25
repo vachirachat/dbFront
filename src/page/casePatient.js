@@ -16,7 +16,6 @@ const casePatient = () => {
     let url;
     //function call in useEffect and ยืนยัน button
     async function fetchData() {
-        console.log(word);
         
         if (searchBy == 'PatID') {
             url = 'http://localhost:5000/case/findbypatid/'+word
@@ -69,13 +68,16 @@ const casePatient = () => {
                 PatientID={items.PatientID}
                 Fname={items.Fname}
                 Lname={items.Lname}
-                dateOfBirth={items.BirthDate}
+                Gender={items.Gender}
+                BirthDate={items.BirthDate}
                 Tel={items.Tel}
                 conTel={items.CounsinTel}
                 Address={items.Address}
                 desc={items.Description}
                 diag={items.Diagnosis}
                 doctor={items.DoctorID}
+                nurse={items.NurseID}
+                intern={items.InternID}
             />)}
 
 
